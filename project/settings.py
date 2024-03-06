@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'corsheaders',
+    'cloudinary',
+
 
 ]
 
@@ -98,8 +100,12 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
 }
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'ds5l23haa',
+    'API_KEY': '353834523326775',
+    'API_SECRET': 'bnDTlWhsGZnwGctZVMtwq62DhfM',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
