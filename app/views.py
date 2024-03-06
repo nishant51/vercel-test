@@ -35,28 +35,10 @@ class EventCreateAPIView(generics.CreateAPIView):
     serializer_class = EventSerializer
 
     def create(self, request, *args, **kwargs):
-        # Get the title and body from the request data
-        title = request.data.get('title')
-        body = request.data.get('body')
-
-        # Get the binary image data from the request data
-        image_data = request.data.get('image')
-
-        # Create a dictionary with the extracted data
-        data = {'title': title, 'body': body, 'image': image_data}
-
-        # Create a serializer instance with the extracted data
-        serializer = self.get_serializer(data=data)
-
-        # Validate the serializer
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            # Save the serializer and get the instance
-            instance = serializer.save()
-
-            # Return the serialized instance with HTTP 201 status code
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        # If serializer is not valid, return errors with HTTP 400 status code
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 '''this is api to update the existing events in our database if there any'''
