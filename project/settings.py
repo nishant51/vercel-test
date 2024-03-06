@@ -16,6 +16,7 @@ from decouple import config
 # settings.py
 from dotenv import load_dotenv
 load_dotenv()
+from django.core.files.storage import FileSystemStorage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,6 +98,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
 }
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 
 # Password validation
